@@ -1,7 +1,9 @@
 from django.db import models
-# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 import datetime
+
+CustomUser = get_user_model()
 
 class Category(models.Model):
 	categoryName = models.CharField(max_length=150, verbose_name="Category Name")
@@ -26,7 +28,7 @@ class Recipes(models.Model):
     image = models.FileField(upload_to='recipesImages/', verbose_name="Image")
     published = models.BooleanField(default=False,verbose_name="Published")
     difficulty_level = models.ForeignKey(DifficultyLevel, on_delete=models.SET_NULL, null=True)
-	# author=models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='recipes')
 
     def __str__(self):
 	    return f'[{self.id}]: {self.name}'
@@ -50,7 +52,7 @@ class Instruction(models.Model):
 	
 class RecipeRating(models.Model):
     recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE, related_name='ratings')
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     def __str__(self):
