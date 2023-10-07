@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
-from kitchenRecipes.models import Category, DifficultyLevel, Recipes, Ingredient
-from kitchenRecipes.forms import CategoryForm, DifficultyLevelForm, RecipesForm, IngredientForm
+from kitchenRecipes.models import Category, DifficultyLevel, Recipes, Ingredient, Instruction, RecipeRating
+from kitchenRecipes.forms import CategoryForm, DifficultyLevelForm, RecipesForm, IngredientForm, InstructionForm, RecipeRatingForm
 from django.contrib.auth.decorators import login_required
 
 class CategoryListView(ListView):
@@ -169,3 +169,85 @@ def delete_ingredient(request, pk):
         ingredient.delete()
         return redirect('ingredient_list')
     return render(request, 'ingredient_confirm_delete.html', {'ingredient': ingredient})
+
+class InstructionListView(ListView):
+    model = Instruction
+    template_name = 'instruction_list.html'
+    context_object_name = 'instructions'
+
+class InstructionDetailView(DetailView):
+    model = Instruction
+    template_name = 'instruction_detail.html'
+    context_object_name = 'instruction'
+
+@login_required
+def add_instruction(request):
+    if request.method == 'POST':
+        form = InstructionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('instruction_list')
+    else:
+        form = InstructionForm()
+    return render(request, 'instruction_form.html', {'form': form})
+
+@login_required
+def edit_instruction(request, pk):
+    instruction = get_object_or_404(Instruction, pk=pk)
+    if request.method == 'POST':
+        form = InstructionForm(request.POST, instance=instruction)
+        if form.is_valid():
+            form.save()
+            return redirect('instruction_list')
+    else:
+        form = InstructionForm(instance=instruction)
+    return render(request, 'instruction_form.html', {'form': form})
+
+@login_required
+def delete_instruction(request, pk):
+    instruction = get_object_or_404(Instruction, pk=pk)
+    if request.method == 'POST':
+        instruction.delete()
+        return redirect('instruction_list')
+    return render(request, 'instruction_confirm_delete.html', {'instruction': instruction})
+
+class RecipeRatingListView(ListView):
+    model = RecipeRating
+    template_name = 'recipe_rating_list.html'
+    context_object_name = 'recipe_ratings'
+
+class RecipeRatingDetailView(DetailView):
+    model = RecipeRating
+    template_name = 'recipe_rating_detail.html'
+    context_object_name = 'recipe_rating'
+
+@login_required
+def add_recipe_rating(request):
+    if request.method == 'POST':
+        form = RecipeRatingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('recipe_rating_list')
+    else:
+        form = RecipeRatingForm()
+    return render(request, 'recipe_rating_form.html', {'form': form})
+
+@login_required
+def edit_recipe_rating(request, pk):
+    recipe_rating = get_object_or_404(RecipeRating, pk=pk)
+    if request.method == 'POST':
+        form = RecipeRatingForm(request.POST, instance=recipe_rating)
+        if form.is_valid():
+            form.save()
+            return redirect('recipe_rating_list')
+    else:
+        form = RecipeRatingForm(instance=recipe_rating)
+    return render(request, 'recipe_rating_form.html', {'form': form})
+
+@login_required
+def delete_recipe_rating(request, pk):
+    recipe_rating = get_object_or_404(RecipeRating, pk=pk)
+    if request.method == 'POST':
+        recipe_rating.delete()
+        return redirect('recipe_rating_list')
+    return render(request, 'recipe_rating_confirm_delete.html', {'recipe_rating': recipe_rating})

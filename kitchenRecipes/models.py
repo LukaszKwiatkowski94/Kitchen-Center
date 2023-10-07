@@ -57,4 +57,3 @@ class RecipeRating(models.Model):
 
     def __str__(self):
         return f'Rating for Recipe {self.recipe.name}: {self.rating}'
-	
