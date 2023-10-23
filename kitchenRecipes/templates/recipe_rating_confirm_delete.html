@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Confirm Recipe Rating Deletion</h1>
+  <p>Are you sure you want to delete the rating for the recipe "{{ recipe_rating.recipe.name }}" (Rating: {{ recipe_rating.rating }})?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+  </form>
+  <a href="{% url 'recipe_rating_detail' recipe_rating.pk %}">Cancel</a>
+  <a href="{% url 'recipe_rating_list' %}">Back to Recipe Ratings List</a>
+{% endblock %}

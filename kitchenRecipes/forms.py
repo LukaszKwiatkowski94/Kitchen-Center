@@ -1,5 +1,5 @@
 from django import forms
-from kitchenRecipes.models import Category, DifficultyLevel, Recipes, Ingredient, Instruction
+from kitchenRecipes.models import Category, DifficultyLevel, Recipes, Ingredient, Instruction, RecipeRating
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -25,3 +25,8 @@ class InstructionForm(forms.ModelForm):
     class Meta:
         model = Instruction
         fields = ['order', 'description', 'recipe']
+
+class RecipeRatingForm(forms.ModelForm):
+    class Meta:
+        model = RecipeRating
+        fields = ['rating']

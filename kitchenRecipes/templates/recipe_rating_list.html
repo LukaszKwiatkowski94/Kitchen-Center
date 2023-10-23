@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>List of Recipe Ratings</h1>
+  <ul>
+    {% for rating in recipe_ratings %}
+      <li><a href="{% url 'recipe_rating_detail' rating.pk %}">{{ rating.recipe.name }} (Rating: {{ rating.rating }})</a></li>
+    {% empty %}
+      <p>No recipe ratings available.</p>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'add_recipe_rating' %}">Add a New Recipe Rating</a>
+{% endblock %}

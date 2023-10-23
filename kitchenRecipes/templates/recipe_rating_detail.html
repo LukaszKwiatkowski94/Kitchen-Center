@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Recipe Rating Details</h1>
+  <p>Recipe: {{ recipe_rating.recipe.name }}</p>
+  <p>Rating: {{ recipe_rating.rating }}</p>
+  <a href="{% url 'edit_recipe_rating' recipe_rating.pk %}">Edit Recipe Rating</a>
+  <a href="{% url 'delete_recipe_rating' recipe_rating.pk %}">Delete Recipe Rating</a>
+  <a href="{% url 'recipe_rating_list' %}">Back to Recipe Ratings List</a>
+{% endblock %}

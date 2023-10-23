@@ -11,7 +11,7 @@ def register_view(request):
             return redirect('login')
     else:
         form = UserRegistrationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
 
 @login_required
 def edit_profile_view(request):
