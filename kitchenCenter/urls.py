@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from kitchenRecipes.views import latest_recipes
+
 urlpatterns = [
+    path('',latest_recipes, name='main-page'),
     path('admin/', admin.site.urls),
     path('user/', include('customuser.urls')),
     path('recipes/',include('kitchenRecipes.urls'))

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Latest Recipes{% endblock %}
+
+{% block content %}
+    <h2>Latest Recipes</h2>
+    
+    <div class="row">
+        {% for recipe in latest_recipes %}
+            <div class="col-md-4">
+                <!-- Wyświetl informacje o przepisie -->
+                <h5>{{ recipe.name }}</h5>
+                <p>{{ recipe.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

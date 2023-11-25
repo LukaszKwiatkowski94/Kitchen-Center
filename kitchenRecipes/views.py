@@ -96,6 +96,11 @@ class RecipesDetailView(DetailView):
     template_name = 'recipes_detail.html'
     context_object_name = 'recipe'
 
+def latest_recipes(request):
+    latest_recipes = Recipes.objects.order_by('-createAt')[:3]  # Pobierz trzy ostatnie przepisy
+    context = {'latest_recipes': latest_recipes}
+    return render(request, 'latest_recipes.html', context)
+
 @login_required
 def add_recipe(request):
     if request.method == 'POST':
