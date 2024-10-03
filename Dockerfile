@@ -1,20 +1,20 @@
-# Wybierz obraz bazowy Pythona
+# Select Python Base Image
 FROM python:3.11-slim
 
-# Ustaw zmienną środowiskową, która wyłącza buforowanie wyjścia Pythona
+# Set an environment variable that disables Python output buffering
 ENV PYTHONUNBUFFERED 1
 
-# Utwórz katalog w kontenerze na aplikację
+# Create a directory in the application container
 WORKDIR /app
 
-# Zainstaluj zależności (Django)
+# Install dependencies (Django)
 RUN pip install --upgrade pip && pip install Django==5.1.1
 
-# Skopiuj cały projekt do katalogu /app w kontenerze
+# Copy the entire project to the /app directory in the container
 COPY . /app/
 
-# Otwarcie portu 8000 w kontenerze
+# Opening of port 8000 in container
 EXPOSE 8000
 
-# Uruchom serwer deweloperski Django na porcie 0.0.0.0:8000
+# Start Django development server on port 0.0.0.0:8000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
