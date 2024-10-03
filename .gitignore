@@ -1,0 +1,95 @@
+# Byte-compiled Python / Cython files
+*.py[cod]
+__pycache__/
+*.so
+
+# C extensions
+*.pyd
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+wheels/
+sdist/
+*.manifest
+*.spec
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.mo
+*.swp
+# db.sqlite3
+# db.sqlite3-journal
+
+# Django migrations
+**/migrations/*
+
+# If you're using Celery
+celerybeat-schedule
+celerybeat.pid
+
+# If you're using Postgres
+*.pgsql
+
+# Media files
+media/
+
+# Static files
+staticfiles/
+static/
+
+# Local environment settings
+.env
+.local
+
+# PyCharm IDE
+.idea/
+
+# VS Code
+.vscode/
+
+# Pylint reports
+pylint-report.txt
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Bandit security linter
+.bandit
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# pipenv
+Pipfile.lock
+
+# MacOS system files
+.DS_Store
