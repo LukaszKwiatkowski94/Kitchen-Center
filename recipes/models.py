@@ -25,4 +25,5 @@ class Recipes(models.Model):
 class Rates(models.Model):
     recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE)
     rate = models.IntegerField(validators=[MaxValueValidator(5),MinValueValidator(1)], verbose_name="Rate")
-    ratedBy = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField(blank=True, verbose_name="Description")
