@@ -45,11 +45,11 @@ celerybeat.pid
 *.pgsql
 
 # Media files
-media/
+media/*
 
 # Static files
 staticfiles/
-static/
+static/*
 
 # Local environment settings
 .env
