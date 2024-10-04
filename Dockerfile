@@ -8,7 +8,8 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Install dependencies (Django)
-RUN pip install --upgrade pip && pip install Django==5.1.1
+RUN pip install --upgrade pip && pip install Django==5.1.1 
+RUN pip install python-dotenv
 
 # Copy the entire project to the /app directory in the container
 COPY . /app/
