@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 import datetime
 
 class Category(models.Model):
@@ -7,7 +8,7 @@ class Category(models.Model):
     active = models.BooleanField(default=True,verbose_name="Active")
 
     def __str__(self):
-		return self.name
+	    return self.name
 
 class Recipes(models.Model):
     name = models.CharField(max_length=250, verbose_name="Name")
@@ -16,7 +17,12 @@ class Recipes(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     active = models.BooleanField(default=True, verbose_name="Active")
     photo = models.FileField(upload_to='newsPhoto/', verbose_name="Photo")
-    author=models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-		return self.name
+	    return self.name
+
+class Rates(models.Model):
+    recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE)
+    rate = models.IntegerField(validators=[MaxValueValidator(100),MinValueValidator(1)], verbose_name="Rate")
+    ratedBy = models.ForeignKey(User, on_delete=models.CASCADE)
