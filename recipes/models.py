@@ -22,6 +22,12 @@ class Recipes(models.Model):
     def __str__(self):
 	    return self.name
 
+class Ingredients(models.Model):
+    recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE)
+    name = models.CharField(max_length=120, verbose_name="Name")
+    count = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Count")
+    unit = models.CharField(max_length=20, verbose_name="Unit")
+
 class Rates(models.Model):
     recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE)
     rate = models.IntegerField(validators=[MaxValueValidator(5),MinValueValidator(1)], verbose_name="Rate")
