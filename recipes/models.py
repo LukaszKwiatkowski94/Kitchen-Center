@@ -28,6 +28,11 @@ class Ingredients(models.Model):
     count = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Count")
     unit = models.CharField(max_length=20, verbose_name="Unit")
 
+class StepList(models.Model):
+    recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE)
+    order = models.IntegerField(validators=[MinValueValidator(1)], verbose_name="Order")
+    step = models.TextField(blank=False, verbose_name="Step")
+
 class Rates(models.Model):
     recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE)
     rate = models.IntegerField(validators=[MaxValueValidator(5),MinValueValidator(1)], verbose_name="Rate")
