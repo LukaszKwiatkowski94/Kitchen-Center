@@ -16,7 +16,7 @@ class Recipes(models.Model):
     dateCreated = models.DateTimeField(default=datetime.datetime.now, verbose_name="Date of creation")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     active = models.BooleanField(default=True, verbose_name="Active")
-    photo = models.FileField(upload_to='newsPhoto/', verbose_name="Photo")
+    photo = models.FileField(upload_to='recipePhoto/', verbose_name="Photo")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
