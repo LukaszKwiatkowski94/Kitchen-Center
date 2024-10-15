@@ -4,7 +4,10 @@ from recipes.models import *
 
 
 def index(request):
-    return render(request, 'index.htm')
+    context = {
+        'recipes':Recipes.objects.all()
+    }
+    return render(request, 'index.htm',context)
 
 def get(request):
     return HttpResponse("Get recipe by id: "+request.recipe)
