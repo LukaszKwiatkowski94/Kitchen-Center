@@ -5,7 +5,8 @@ from recipes.models import *
 
 def index(request):
     context = {
-        'recipes':Recipes.objects.all()
+        'recipes':Recipes.objects.all(),
+        'categories': ['soup','dessert','dinners','breakfast','snacks','cakes']
     }
     return render(request, 'index.htm',context)
 

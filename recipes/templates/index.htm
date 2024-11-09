@@ -1,18 +1,80 @@
 {% extends "base.htm" %}
 
 {% block content %}
-    <h2>Main page of recipes</h2>
 
-    {% for recipe in recipes %}
+<style>
+    .main-recipe {
+        max-width: 100%; 
+        margin: 0 auto; 
+    }
+    
+    .main-recipe-photo {
+        width: 100%; 
+        max-height: 40vh; 
+        object-fit: cover;
+    }
 
-        <h3>{{recipe.name}}</h3>
-        <br>
-        <p>{{recipe.description}}</p>
-        <div>{{recipe.dateCreated}}</div>
-        <div>{{recipe.category}}</div>
-        <div>{{recipe.author}}</div>
-        <img src="{{recipe.photo.url }}" title="photo test" alt="test"/>
+    .categories-list__item {
+        letter-spacing: 2px;
+        transition: box-shadow 0.5s;
+    }
 
-    {% endfor %}
+    .categories-list__item:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+    }
+</style>
+    <div class="row mt-4">
+        <div class="col-12"></div>
+        <div class="col-md-8">
+
+            <div class="row">
+
+                <div class="col-12 main-recipe w-100">
+                    <img src="{{recipes.0.photo.url}}" title="photo test" class="main-recipe-photo img-fluid w-100"/>
+                    <div class="main-recipe-name p-2 text-center bg-warning h2">
+                        {{recipes.0.name}}
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <img src="{{recipes.1.photo.url}}" title="photo test" class="main-recipe-photo img-fluid w-100"/>
+                    <div class="main-recipe-name p-2 text-center bg-warning h2">
+                        {{recipes.1.name}}
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <img src="{{recipes.2.photo.url}}" title="photo test" class="main-recipe-photo img-fluid w-100"/>
+                    <div class="main-recipe-name p-2 text-center bg-warning h2">
+                        {{recipes.2.name}}
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="categories-list">
+                <div class="categories-list__header bg-dark-subtle text-center p-2 h3 mb-0"><strong>Categories</strong></div>
+                <div class="categories-list__container bg-white mt-0 py-2">
+                    {% for item in categories %}
+                        <div class="categories-list__item p-3 text-center text-uppercase">{{item}}</div>
+                    {% endfor %}
+                </div>
+                
+
+            </div>
+            
+
+            <div class="latest-ratings mt-4">
+                <div class="latest-ratings__header bg-dark-subtle text-center p-2 h3"><strong>Latest ratings</strong></div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
